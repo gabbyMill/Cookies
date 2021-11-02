@@ -4,6 +4,7 @@
   "description": "My webpack project",
   "main": "index.js",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1"
   },
   "devDependencies": {
@@ -22,6 +23,7 @@
     "webpack-dev-server": "^4.4.0"
   },
   "scripts": {
+    "start": "nodemon ./src/backend/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
