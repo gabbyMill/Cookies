@@ -15,23 +15,18 @@ makesSureDbExists(); // self-explanatory
 router.post("/", (req, res, next) => {
   const { url } = req.body;
   if (doesUrlExist(url)) {
-    console.log("false");
-    return res.send(
-      `${url} has already been shortened for you at http://localhost:3000/get/${doesUrlExist(
-        url
-      )}`
-    );
+    return res.send(`http://localhost:3000/get/${doesUrlExist(url)}`);
   }
-  const dbFile = path.join(path.resolve("./static"), "/db.json");
+  const dbFile = path.join(path.resolve("./dist"), "/db.json");
   console.log("in short url route");
   try {
-    console.log("before");
     const content = JSON.parse(fs.readFileSync(dbFile));
     const id = uniqueIdGenerator();
     content[id] = req.body;
     fs.writeFileSync(dbFile, JSON.stringify(content));
-    console.log(`something\nhttp:/localhost:3000/${id}`);
-    // return res.json(`http:/localhost:3000/${id}`);
+    return res.json([`http://localhost:3000/get/${id}`, true]);
+    // indicate to client-side that this is a new url
+    // and did not previously exist in DB
   } catch (error) {
     console.log(error);
     next(error);

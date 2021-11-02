@@ -7,15 +7,12 @@ const fs = require("fs");
 // corresponding url to the generated ids
 router.get("/:id", (req, res, next) => {
   console.log("in serve client route");
-  const dbFile = path.join(path.resolve("./static"), "/db.json");
-  console.log(dbFile);
-  console.log(req.params);
+  const dbFile = path.join(path.resolve("./dist"), "/db.json");
   try {
     const content = JSON.parse(fs.readFileSync(dbFile));
     for (const key in content) {
       if (key === req.params.id) {
         // return the corresponding url
-        console.log(`Match found ${JSON.stringify(content[key].url)}`);
         return res.redirect(content[key].url);
       }
     }
