@@ -1,22 +1,28 @@
 # Gabby's Url-shortener
 
-## Guidelines
+## Left to Implement:
 
-Create a route /api/shorturl/ in your express app that will handle all url shortening requests. (We recommend using express Router)
+- [] Check if valid url
+- [] Return user it's shortened version + if he already shortened it
+- [] Respond with stats
+- [] Learn How to tests + Databases with class
+- [] Bonuses are always a good thing
 
-Write/read Asynchronously a single JSON file as your DB
+### Guidelines
 
-Serve your client files from your server at route /
+- [x] Create a route /api/shorturl/ in your express app that will handle all url shortening requests. (We recommend using express Router)
+
+- [x] Write/read Asynchronously a single JSON file as your DB
+
+- [x] Serve your client files from your server at route /
 
 Style and change your front-end as you wish. You can take inspiration from this example
 
-## Requirements
+### Requirements
 
-Examine thoroughly and copy all functionality of this FCC example
+- [] Examine thoroughly and copy all functionality of this FCC example
 
-Use a class DataBase{} to read/write (Asynchronously) all data in your back-end (you can use a json file as persistent layer)
-
-Add another functionality to your service: a statistics route (api/statistic/:shorturl-id) that will respond with the following data per shorturl-id:
+- [] Add another functionality to your service: a statistics route (api/statistic/:shorturl-id) that will respond with the following data per shorturl-id:
 
 creationDate - a SQLDate format
 redirectCount - the amount of times this url was used for redirection
@@ -26,7 +32,7 @@ Fully test your express app with jest and supertest. Test each end point respons
 
 Use a separate DB file for your tests. Hint: use Environment variables
 
-## Bonus
+### Bonus
 
 Add any feature you desire. Some ideas worth extra points:
 Custom short URL. Support optional shorturl-id parameter in your POST request. Pay attention to error handling.

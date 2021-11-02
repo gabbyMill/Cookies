@@ -17,7 +17,7 @@ router.post("/", (req, res, next) => {
   if (doesUrlExist(url)) {
     console.log("false");
     return res.send(
-      `${url} has already been shortened for you at http://localhost:3000/${doesUrlExist(
+      `${url} has already been shortened for you at http://localhost:3000/get/${doesUrlExist(
         url
       )}`
     );
@@ -25,11 +25,13 @@ router.post("/", (req, res, next) => {
   const dbFile = path.join(path.resolve("./static"), "/db.json");
   console.log("in short url route");
   try {
+    console.log("before");
     const content = JSON.parse(fs.readFileSync(dbFile));
     const id = uniqueIdGenerator();
     content[id] = req.body;
     fs.writeFileSync(dbFile, JSON.stringify(content));
-    res.json(`http:/localhost:3000/${id}`);
+    console.log(`something\nhttp:/localhost:3000/${id}`);
+    // return res.json(`http:/localhost:3000/${id}`);
   } catch (error) {
     console.log(error);
     next(error);
