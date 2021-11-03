@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+#container {
+  font-size: 2rem;
+}
+
 .flex {
   display: flex;
 }
