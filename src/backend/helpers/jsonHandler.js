@@ -5,7 +5,7 @@ const dbFile = path.join(path.resolve("./dist"), "/db.json");
 
 function makesSureDbExists() {
   if (!fs.existsSync(dbFile)) {
-    fs.writeFileSync(dbFile, JSON.stringify({}));
+    fs.writeFileSync(dbFile, JSON.stringify([]));
   }
 }
 

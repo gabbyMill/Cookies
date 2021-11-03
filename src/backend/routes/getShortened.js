@@ -10,10 +10,9 @@ router.get("/:id", (req, res, next) => {
   const dbFile = path.join(path.resolve("./dist"), "/db.json");
   try {
     const content = JSON.parse(fs.readFileSync(dbFile));
-    for (const key in content) {
-      if (key === req.params.id) {
-        // return the corresponding url
-        return res.redirect(content[key].url);
+    for (const objects of content) {
+      if (objects.id === req.params.id) {
+        return res.redirect(objects.url);
       }
     }
   } catch (error) {

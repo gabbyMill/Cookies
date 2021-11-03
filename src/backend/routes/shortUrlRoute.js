@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 const path = require("path");
+const moment = require("moment");
+
 const uniqueIdGenerator = require("../helpers/uniqueId.js");
 const { makesSureDbExists } = require("../helpers/jsonHandler");
 const { doesUrlExist } = require("../helpers/jsonHandler.js");
@@ -15,8 +17,6 @@ makesSureDbExists(); // self-explanatory
 
 router.post("/", (req, res, next) => {
   const { url } = req.body;
-  console.log(url);
-  console.log(validator.isURL(url));
   if (!validator.isURL(url)) {
     console.log("not a valid url");
     return next({ status: 400, message: "Not a Valid URL" });
@@ -29,7 +29,10 @@ router.post("/", (req, res, next) => {
   try {
     const content = JSON.parse(fs.readFileSync(dbFile));
     const id = uniqueIdGenerator();
-    content[id] = req.body;
+    const urlObj = { id };
+    urlObj.url = req.body.url;
+    urlObj.creationDate = moment().format("DD-MM-YYYY HH:mm:ss ");
+    content.push(urlObj);
     fs.writeFileSync(dbFile, JSON.stringify(content));
     return res.json([`http://localhost:3000/${id}`, true]);
     // indicate to client-side that this is a new url
