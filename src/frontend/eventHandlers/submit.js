@@ -7,13 +7,11 @@ export default async function sendUrl(e) {
   const urlBar = document.querySelector(".url-bar");
   e.preventDefault();
   try {
-    console.log("try");
     const res = await axios.post(`http://localhost:3000/api/shorturl`, {
       url: urlBar.value,
     });
     makesSureIsNotHidden("display-result");
     display.textContent = "";
-    console.log(res.data);
     if (res.data[1] === true) {
       // server side sends true  as res.data[1]
       // if this url did not previously exist in DB
@@ -37,7 +35,6 @@ export default async function sendUrl(e) {
     return;
   } catch (error) {
     if (error.isAxiosError) {
-      console.log("axios error");
       console.log(error.response.data);
       makesSureIsNotHidden("display-result");
       display.textContent = "";

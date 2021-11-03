@@ -11,9 +11,9 @@ function makesSureDbExists() {
 
 function doesUrlExist(inputUrl) {
   const content = JSON.parse(fs.readFileSync(dbFile));
-  for (const key in content) {
-    if (content[key].url === inputUrl) {
-      return key;
+  for (const objects of content) {
+    if (objects.url === inputUrl) {
+      return objects.id;
     }
   }
   return false;

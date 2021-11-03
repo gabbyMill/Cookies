@@ -16,10 +16,13 @@ const validator = require("validator");
 makesSureDbExists(); // self-explanatory
 
 router.post("/", (req, res, next) => {
-  const { url } = req.body;
+  let { url } = req.body;
   if (!validator.isURL(url)) {
     console.log("not a valid url");
     return next({ status: 400, message: "Not a Valid URL" });
+  }
+  if (!url.includes("https://")) {
+    url = "https://" + url;
   }
   if (doesUrlExist(url)) {
     return res.send(`http://localhost:3000/${doesUrlExist(url)}`);
@@ -30,7 +33,7 @@ router.post("/", (req, res, next) => {
     const content = JSON.parse(fs.readFileSync(dbFile));
     const id = uniqueIdGenerator();
     const urlObj = { id };
-    urlObj.url = req.body.url;
+    urlObj.url = url;
     urlObj.creationDate = moment().format("DD-MM-YYYY HH:mm:ss ");
     content.push(urlObj);
     fs.writeFileSync(dbFile, JSON.stringify(content));
