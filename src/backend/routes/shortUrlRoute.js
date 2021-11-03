@@ -19,7 +19,7 @@ router.post("/", (req, res, next) => {
   console.log(validator.isURL(url));
   if (!validator.isURL(url)) {
     console.log("not a valid url");
-    return next({ status: 400, message: "Not a URL" });
+    return next({ status: 400, message: "Not a Valid URL" });
   }
   if (doesUrlExist(url)) {
     return res.send(`http://localhost:3000/${doesUrlExist(url)}`);

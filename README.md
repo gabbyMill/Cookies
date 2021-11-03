@@ -2,11 +2,13 @@
 
 ## Left to Implement:
 
-- [] Check if valid url
-- [] Return user it's shortened version + if he already shortened it
-- [] Respond with stats
-- [] Learn How to tests + Databases with class
-- [] Bonuses are always a good thing
+- [x] Check if valid url
+- [x] Return user it's shortened version + if he already shortened it
+- [ ] Respond with stats
+- [ ] Learn How to tests + Databases with class
+- [ ] Bonuses are always a good thing
+- BUG fix asdasda
+- "BUG", "HACK", "FIXME", "TODO", "COMMENT", "NOTE",
 
 ### Guidelines
 

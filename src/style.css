@@ -4,12 +4,17 @@
   align-items: center;
 }
 
-#container {
-  font-size: 2rem;
+.large {
+  font-size: 3rem;
 }
 
 .flex {
   display: flex;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
 .center {

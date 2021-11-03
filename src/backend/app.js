@@ -23,3 +23,4 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);
 });
+// COMMENT error handler needs optimizing
