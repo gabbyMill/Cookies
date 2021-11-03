@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.take {
+  margin: 3rem;
+}
+
 .large {
   font-size: 3rem;
 }
@@ -28,4 +32,15 @@
 
 .display-result {
   margin-top: 4rem;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.header-content {
+  /* float: right; */
+  font-size: 3rem;
 }

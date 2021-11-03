@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/", getShortenedUrl);
-app.use("/api/shorturl", shortUrlRoute);
+app.use("/api", shortUrlRoute);
 
 app.use("/app", express.static(path.resolve("./dist")));
 app.get("/app", function (req, res) {

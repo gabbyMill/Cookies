@@ -15,7 +15,7 @@ const validator = require("validator");
 
 makesSureDbExists(); // self-explanatory
 
-router.post("/", (req, res, next) => {
+router.post("/shorturl", (req, res, next) => {
   let { url } = req.body;
   if (!validator.isURL(url)) {
     console.log("not a valid url");
@@ -44,6 +44,12 @@ router.post("/", (req, res, next) => {
     console.log(error);
     next(error);
   }
+});
+
+router.get("/statistic/:id", (req, res, next) => {
+  const dbFile = path.join(path.resolve("./dist"), "/db.json");
+  const content = JSON.parse(fs.readFileSync(dbFile));
+  res.json(content);
 });
 
 module.exports = router;

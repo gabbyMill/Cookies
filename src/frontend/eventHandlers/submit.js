@@ -1,6 +1,6 @@
 import axios from "axios";
 import makesSureIsNotHidden from "../classHandlers/toggleHidden.js";
-import createElement from "../domHelpers/createElement.js";
+import createElement from "../helpers/createElement.js";
 const display = document.querySelector(".display-result");
 
 export default async function sendUrl(e) {

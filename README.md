@@ -4,8 +4,9 @@
 
 - [x] Check if valid url
 - [x] Return user it's shortened version + if he already shortened it
-- [ ] Implement redirects counter
+- [x] Implement redirects counter
 - [ ] Respond with stats
+- [ ] Add user functionality
 - [ ] Learn How to tests + Databases with class
 - [ ] Bonuses are always a good thing
 
