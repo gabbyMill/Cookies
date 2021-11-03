@@ -15,7 +15,7 @@ makesSureDbExists(); // self-explanatory
 router.post("/", (req, res, next) => {
   const { url } = req.body;
   if (doesUrlExist(url)) {
-    return res.send(`http://localhost:3000/get/${doesUrlExist(url)}`);
+    return res.send(`http://localhost:3000/${doesUrlExist(url)}`);
   }
   const dbFile = path.join(path.resolve("./dist"), "/db.json");
   console.log("in short url route");
@@ -24,7 +24,7 @@ router.post("/", (req, res, next) => {
     const id = uniqueIdGenerator();
     content[id] = req.body;
     fs.writeFileSync(dbFile, JSON.stringify(content));
-    return res.json([`http://localhost:3000/get/${id}`, true]);
+    return res.json([`http://localhost:3000/${id}`, true]);
     // indicate to client-side that this is a new url
     // and did not previously exist in DB
   } catch (error) {

@@ -18,7 +18,10 @@ export default async function sendUrl(e) {
     // if this url did not previously exist in DB
     display.textContent = "Your new shortened URL is available here:\n";
     display.append(
-      createElement("a", res.data[0], ["link"], { href: res.data[0] })
+      createElement("a", res.data[0], ["link"], {
+        href: res.data[0],
+        target: "_blank",
+      })
     );
   } else {
     display.textContent = "This has already been shortened for you at\n";
