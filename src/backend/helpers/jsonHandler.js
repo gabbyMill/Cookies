@@ -19,7 +19,19 @@ function doesUrlExist(inputUrl) {
   return false;
 }
 
+function incrementRedirect(obj) {
+  const content = JSON.parse(fs.readFileSync(dbFile));
+  for (const objects of content) {
+    if (objects.id === obj.id) {
+      objects.redirected++;
+      return fs.writeFileSync(dbFile, JSON.stringify(content));
+    }
+  }
+  return false;
+}
+
 module.exports = {
   makesSureDbExists,
   doesUrlExist,
+  incrementRedirect,
 };

@@ -32,7 +32,7 @@ router.post("/", (req, res, next) => {
   try {
     const content = JSON.parse(fs.readFileSync(dbFile));
     const id = uniqueIdGenerator();
-    const urlObj = { id };
+    const urlObj = { id, redirected: 0 };
     urlObj.url = url;
     urlObj.creationDate = moment().format("DD-MM-YYYY HH:mm:ss ");
     content.push(urlObj);

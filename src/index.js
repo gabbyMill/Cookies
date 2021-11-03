@@ -1,6 +1,7 @@
 import "./style.css";
 import sendUrl from "./frontend/eventHandlers/submit.js";
 import sendUrlThroughEnter from "./frontend/eventHandlers/sendUrlThroughEnter";
+// import "./frontend/images/download.png";
 
 const urlBar = document.querySelector(".url-bar");
 const submitBtn = document.querySelector(".submit");

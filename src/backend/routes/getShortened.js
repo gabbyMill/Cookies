@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require("path");
 const fs = require("fs");
 
+const { incrementRedirect } = require("../helpers/jsonHandler.js");
 // this route will serve the clients its
 // corresponding url to the generated ids
 router.get("/:id", (req, res, next) => {
@@ -12,6 +13,8 @@ router.get("/:id", (req, res, next) => {
     const content = JSON.parse(fs.readFileSync(dbFile));
     for (const objects of content) {
       if (objects.id === req.params.id) {
+        incrementRedirect(objects);
+        // console.log(objects);
         return res.redirect(objects.url);
       }
     }

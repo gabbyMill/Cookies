@@ -41,7 +41,10 @@ export default async function sendUrl(e) {
       display.textContent = error.response.data;
     } else {
       console.log("error coming from outside of axios");
-      return;
+      display.textContent = "";
+      display.textContent = `Problem accessing your data
+      Try again Later`;
     }
+    return;
   }
 }
