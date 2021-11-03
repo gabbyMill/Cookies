@@ -5,6 +5,7 @@ const path = require("path");
 const uniqueIdGenerator = require("../helpers/uniqueId.js");
 const { makesSureDbExists } = require("../helpers/jsonHandler");
 const { doesUrlExist } = require("../helpers/jsonHandler.js");
+const validator = require("validator");
 // this function will receive a request with a body
 // that includes a url that needs shortening.
 // it will write in your database the key (original url)
@@ -14,6 +15,12 @@ makesSureDbExists(); // self-explanatory
 
 router.post("/", (req, res, next) => {
   const { url } = req.body;
+  console.log(url);
+  console.log(validator.isURL(url));
+  if (!validator.isURL(url)) {
+    console.log("not a valid url");
+    return next({ status: 400, message: "Not a URL" });
+  }
   if (doesUrlExist(url)) {
     return res.send(`http://localhost:3000/${doesUrlExist(url)}`);
   }

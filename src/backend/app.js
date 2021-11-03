@@ -20,6 +20,6 @@ app.get("/app", function (req, res) {
   res.sendFile(path.resolve("./dist/index.html"));
 });
 app.use(errorHandler);
-app.app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);
 });
