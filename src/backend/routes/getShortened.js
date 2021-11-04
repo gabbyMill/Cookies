@@ -14,12 +14,14 @@ router.get("/:id", (req, res, next) => {
     for (const objects of content) {
       if (objects.id === req.params.id) {
         incrementRedirect(objects);
-        return res.redirect(objects.url);
+        res.redirect(objects.url);
+        res.end();
       }
     }
   } catch (error) {
     console.log("error in reading db file");
     next(error);
+    res.end();
     // or
     // throw {message: 'problem reading file', status: 500} // ?
   }
