@@ -51,6 +51,7 @@ router.get("/statistic/:id", (req, res, next) => {
   const dbFile = path.join(path.resolve("./"), "/db.json");
   const content = JSON.parse(fs.readFileSync(dbFile));
   res.json(content);
+  res.end();
 });
 
 module.exports = router;

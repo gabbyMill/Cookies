@@ -21,12 +21,12 @@ const config = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        // relative path is from src
-        { from: "./src/favicon.ico" }, // <- your path to favicon
-      ],
-    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     // relative path is from src
+    //     { from: "./src/favicon.ico" }, // <- your path to favicon
+    //   ],
+    // }),
 
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
