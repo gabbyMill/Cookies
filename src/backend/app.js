@@ -19,6 +19,6 @@ app.get("/app", function (req, res) {
 });
 app.use(errorHandler);
 app.listen(process.env.PORT, () => {
-  console.log(`App is running`);
+  console.log(`App is running on port ${process.env.PORT}`);
 });
 // COMMENT error handler needs optimizing
