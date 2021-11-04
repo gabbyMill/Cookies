@@ -1,5 +1,4 @@
 import "./style.css";
-import "./favicon.ico";
 import sendUrl from "./frontend/eventHandlers/submit.js";
 import sendUrlThroughEnter from "./frontend/eventHandlers/sendUrlThroughEnter";
 import displayStats from "./frontend/eventHandlers/displayStats.js";
