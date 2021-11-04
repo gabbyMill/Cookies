@@ -2,6 +2,7 @@
 
 ## Questions
 
+BUG Problem, when typing in www it is regarded as a different site
 NOTE Error handling in json handler is good ?
 
 ## Left to Implement:
@@ -11,6 +12,7 @@ NOTE Error handling in json handler is good ?
 - [x] Implement redirects counter
 - [x] Respond with stats
 - [ ] Custom made URLs
+- [ ] When link is clicked stats are re-rendered on display
 - [x] Handle errors like a boss
 - [ ] Add user functionality
 - [ ] Learn How to tests + Databases with class
