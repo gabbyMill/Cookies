@@ -1,9 +1,7 @@
 const express = require("express");
-const fs = require("fs");
 const path = require("path");
 const app = express();
 const cors = require("cors");
-const PORT = process.env.PORT || 3000;
 
 const shortUrlRoute = require("./routes/shortUrlRoute.js");
 const getShortenedUrl = require("./routes/getShortened.js");
@@ -20,7 +18,7 @@ app.get("/app", function (req, res) {
   res.sendFile(path.resolve("./dist/index.html"));
 });
 app.use(errorHandler);
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
   console.log(`App is running on port ${PORT}`);
 });
 // COMMENT error handler needs optimizing
