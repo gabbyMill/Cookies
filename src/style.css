@@ -31,7 +31,11 @@
 }
 
 .url-bar {
-  width: 70vh;
+  background-color: lightblue;
+  opacity: 0.5;
+  border-color: rgb(112, 176, 197);
+  /* height: 15vh;
+  width: 70vh; */
 }
 
 .display-result {
@@ -171,11 +175,67 @@ h1 {
 }
 
 /******
-Borrowed
+Button
  ******/
 
-.row {
-  margin-bottom: 25px;
+.submit {
+  --color: #578ac9;
+  margin: 1rem;
+
+  color: white;
+  font-weight: 900;
+  font-size: 1.2em;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: var(--color);
+  cursor: pointer;
+  outline: 2px solid var(--color);
+  transition: 300ms ease-in-out;
+  outline-offset: -2px;
   position: relative;
-  overflow: hidden;
+}
+
+.submit::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -3px;
+  width: 3px;
+  height: 100%;
+  opacity: 0;
+  background-color: var(--color);
+  border-radius: 1rem;
+}
+
+.submit:focus::after {
+  animation: anim 1s ease-in-out;
+  transform: translateX(-50%);
+}
+
+@keyframes anim {
+  0% {
+    opacity: 0;
+    width: 3px;
+  }
+  30% {
+    opacity: 1;
+  }
+  50% {
+    width: 70%;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    width: 3px;
+    opacity: 0;
+    left: 100%;
+  }
+}
+
+.submit:focus,
+.submit:hover {
+  outline-offset: 0.6rem;
+  transition: 300ms ease-in-out;
 }

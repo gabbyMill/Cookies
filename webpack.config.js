@@ -1,6 +1,7 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
 const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV == "production";
@@ -19,6 +20,12 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        // relative path is from src
+        { from: "./src/favicon.ico" }, // <- your path to favicon
+      ],
     }),
 
     // Add your plugins here
@@ -39,7 +46,7 @@ const config = {
         use: [stylesHandler, "css-loader", "sass-loader"],
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif|ico)$/i,
         type: "asset",
       },
 

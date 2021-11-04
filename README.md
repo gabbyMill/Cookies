@@ -10,7 +10,8 @@ NOTE Error handling in json handler is good ?
 - [x] Return user it's shortened version + if he already shortened it
 - [x] Implement redirects counter
 - [x] Respond with stats
-- [ ] Handle errors like a boss
+- [ ] Custom made URLs
+- [x] Handle errors like a boss
 - [ ] Add user functionality
 - [ ] Learn How to tests + Databases with class
 - [ ] Bonuses are always a good thing
