@@ -29,7 +29,7 @@
     "webpack-dev-server": "^4.4.0"
   },
   "scripts": {
-    "start": "nodemon ./src/backend/app.js --ext js",
+    "start": "node ./src/backend/app.js --ext js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
