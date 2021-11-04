@@ -2,6 +2,8 @@ import "./style.css";
 import sendUrl from "./frontend/eventHandlers/submit.js";
 import sendUrlThroughEnter from "./frontend/eventHandlers/sendUrlThroughEnter";
 import displayStats from "./frontend/eventHandlers/displayStats.js";
+import wrapper from "./frontend/inputPage.js";
+wrapper();
 // import "./frontend/images/download.png";
 
 const urlBar = document.querySelector(".url-bar");
