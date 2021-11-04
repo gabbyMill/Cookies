@@ -28,6 +28,7 @@ router.get("/:id", (req, res, next) => {
 });
 router.get("/", (req, res) => {
   res.redirect("/app");
+  res.end();
 });
 
 module.exports = router;
