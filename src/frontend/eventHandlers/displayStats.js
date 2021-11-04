@@ -3,6 +3,8 @@
 
 import axios from "axios";
 import makesSureIsNotHidden from "../classHandlers/toggleHidden";
+import createElement from "../helpers/createElement";
+const display = document.querySelector(".display-result");
 
 // switch between users
 export default async function displayStats(user, id) {
@@ -10,8 +12,51 @@ export default async function displayStats(user, id) {
   if (link) {
     id = link.textContent.split(`http://localhost:3000/`)[1];
   }
-  const res = await axios.get(`http://localhost:3000/api/statistic/${id}`);
-  console.log(res.data);
-  // display res.data etc...
-  // make sure stats isn't hidden
+  try {
+    const res = await axios.get(`http://localhost:3000/api/statistic/${id}`);
+    for (const obj of res.data) {
+      if (obj.id === id) {
+        console.log(obj);
+        const title = createElement("div", "Statistics about your URL ", [
+          "title",
+        ]);
+        const redirects = createElement(
+          "div",
+          `Times this link was visited: ${obj.redirected}`,
+          ["stat"]
+        );
+        const orig = createElement("div", `Original URL: `, ["stat"]);
+        orig.append(
+          createElement("a", obj.url, ["link"], {
+            href: obj.url,
+            target: "_blank",
+          })
+        );
+        const short = createElement("div", `Shortened URL: `, ["stat"]);
+        short.append(
+          createElement("a", `http://localhost:3000/${id}`, ["link"], {
+            href: `http://localhost:3000/${id}`,
+            target: "_blank",
+          })
+        );
+        const date = createElement("div", `Date Created: ${obj.creationDate}`, [
+          "stat",
+        ]);
+        display.textContent = "";
+        display.append(title, short, orig, redirects, date);
+      }
+    }
+  } catch (error) {
+    if (error.isAxiosError) {
+      console.log(error.response.data);
+      makesSureIsNotHidden("display-result");
+      display.textContent = "";
+      display.textContent = error.response.data;
+    } else {
+      console.log("error coming from outside of axios");
+      display.textContent = "";
+      display.textContent = `Problem accessing your data
+      Try again Later`;
+    }
+  }
 }

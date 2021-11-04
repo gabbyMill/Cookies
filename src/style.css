@@ -1,19 +1,5 @@
-#root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.take {
-  margin: 3rem;
-}
-
-.large {
-  font-size: 3rem;
-}
-
-.flex {
-  display: flex;
+.hidden {
+  display: none;
 }
 
 .column {
@@ -26,8 +12,27 @@
   justify-content: center;
 }
 
-.hidden {
-  display: none;
+.large {
+  font-size: 3rem;
+}
+
+.flex {
+  display: flex;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#container {
+  background-color: beige;
+  width: 90vh;
+}
+
+.url-bar {
+  width: 70vh;
 }
 
 .display-result {
@@ -41,6 +46,5 @@
 }
 
 .header-content {
-  /* float: right; */
   font-size: 3rem;
 }

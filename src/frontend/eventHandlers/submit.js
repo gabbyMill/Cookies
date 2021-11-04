@@ -31,7 +31,6 @@ export default async function sendUrl(e) {
         })
       );
     }
-    // display.focus();
     return;
   } catch (error) {
     if (error.isAxiosError) {

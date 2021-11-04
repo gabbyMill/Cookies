@@ -1,11 +1,16 @@
 # Gabby's Url-shortener
 
+## Questions
+
+NOTE Error handling in json handler is good ?
+
 ## Left to Implement:
 
 - [x] Check if valid url
 - [x] Return user it's shortened version + if he already shortened it
 - [x] Implement redirects counter
-- [ ] Respond with stats
+- [x] Respond with stats
+- [ ] Handle errors like a boss
 - [ ] Add user functionality
 - [ ] Learn How to tests + Databases with class
 - [ ] Bonuses are always a good thing
@@ -24,9 +29,9 @@ Style and change your front-end as you wish. You can take inspiration from this 
 
 ### Requirements
 
-- [] Examine thoroughly and copy all functionality of this FCC example
+- [x] Examine thoroughly and copy all functionality of this FCC example
 
-- [] Add another functionality to your service: a statistics route (api/statistic/:shorturl-id) that will respond with the following data per shorturl-id:
+- [x] Add another functionality to your service: a statistics route (api/statistic/:shorturl-id) that will respond with the following data per shorturl-id:
 
 creationDate - a SQLDate format
 redirectCount - the amount of times this url was used for redirection

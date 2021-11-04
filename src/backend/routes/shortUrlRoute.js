@@ -27,7 +27,7 @@ router.post("/shorturl", (req, res, next) => {
   if (doesUrlExist(url)) {
     return res.send(`http://localhost:3000/${doesUrlExist(url)}`);
   }
-  const dbFile = path.join(path.resolve("./dist"), "/db.json");
+  const dbFile = path.join(path.resolve("./"), "/db.json");
   console.log("in short url route");
   try {
     const content = JSON.parse(fs.readFileSync(dbFile));
@@ -47,7 +47,7 @@ router.post("/shorturl", (req, res, next) => {
 });
 
 router.get("/statistic/:id", (req, res, next) => {
-  const dbFile = path.join(path.resolve("./dist"), "/db.json");
+  const dbFile = path.join(path.resolve("./"), "/db.json");
   const content = JSON.parse(fs.readFileSync(dbFile));
   res.json(content);
 });
