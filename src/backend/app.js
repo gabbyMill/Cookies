@@ -15,8 +15,8 @@ app.use("/api", shortUrlRoute);
 
 app.use(errorHandler);
 
-app.use("/app", express.static(path.resolve("./dist")));
-app.get("/app", function (req, res) {
+app.use("/app/", express.static(path.resolve("./dist")));
+app.get("/app/", function (req, res) {
   res.sendFile(path.resolve("./dist/index.html"));
 });
 
