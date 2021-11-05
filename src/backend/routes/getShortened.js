@@ -14,10 +14,10 @@ router.get("/:id", (req, res, next) => {
     for (const objects of content) {
       if (objects.id === req.params.id) {
         incrementRedirect(objects);
-        res.redirect(objects.url);
-        res.end();
+        return res.redirect(objects.url);
       }
     }
+    throw { error: 400, message: "ID not found" };
   } catch (error) {
     console.log("error in reading db file");
     next(error);
