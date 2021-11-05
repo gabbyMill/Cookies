@@ -1,7 +1,7 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
 const path = require("path");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+// const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV == "production";
@@ -11,7 +11,7 @@ const stylesHandler = "style-loader";
 const config = {
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve("./dist"),
   },
   devServer: {
     open: true,

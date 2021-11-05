@@ -1,0 +1,241 @@
+.hidden {
+  display: none;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.large {
+  font-size: 3rem;
+}
+
+.flex {
+  display: flex;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#container {
+  width: 90vh;
+}
+
+.url-bar {
+  background-color: lightblue;
+  opacity: 0.5;
+  border-color: rgb(112, 176, 197);
+  /* height: 15vh;
+  width: 70vh; */
+}
+
+.display-result {
+  margin-top: 4rem;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.header-content {
+  font-size: 3rem;
+}
+
+/******
+  Borrowed css
+ ******/
+
+body {
+  margin: 0;
+  background: #93c3e7;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  position: relative;
+  color: #fff;
+  opacity: 0;
+  transition: 0.8s ease-in-out;
+}
+
+#progress {
+  position: absolute;
+  background: #0069ec;
+  height: 100vh;
+  width: 0;
+  transition: width 0.2s ease-in-out;
+}
+
+.borrowed-center {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/******
+  Form
+ ******/
+
+#register {
+  background: #fff;
+  position: relative;
+  width: 410px;
+  padding: 2px 15px 20px 15px;
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1s ease-in-out;
+}
+
+#register.close {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+  transition: 0.8s ease-in-out;
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0);
+}
+
+.next {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  font-size: 40px;
+  color: #25a3ff;
+  float: right;
+  cursor: pointer;
+}
+.next:hover {
+  color: #333;
+}
+.wrong .next {
+  color: #ff2d26;
+}
+.close .next {
+  color: #fff;
+}
+
+#inputContainer {
+  position: relative;
+  opacity: 0;
+  width: 350px;
+  margin-top: 25px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#inputContainer input {
+  width: 100%;
+  padding: 0 5px;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+#inputLabel {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 5px;
+  transition: 0.2s ease-in-out;
+}
+
+#inputContainer input:valid + #inputLabel {
+  top: -15px;
+  font-size: 11px;
+  font-weight: normal;
+  color: #9e9e9e;
+}
+
+#inputProgress {
+  position: absolute;
+  border-bottom: 2px solid #25a3ff;
+  padding: 3px 0;
+  width: 0;
+  transition: width 0.6s ease-in-out;
+}
+
+.wrong #inputProgress {
+  border-color: #ff2d26;
+}
+
+/******
+Button
+ ******/
+
+.submit {
+  --color: #578ac9;
+  margin: 1rem;
+
+  color: white;
+  font-weight: 900;
+  font-size: 1.2em;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+  background-color: var(--color);
+  cursor: pointer;
+  outline: 2px solid var(--color);
+  transition: 300ms ease-in-out;
+  outline-offset: -2px;
+  position: relative;
+}
+
+.submit::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -3px;
+  width: 3px;
+  height: 100%;
+  opacity: 0;
+  background-color: var(--color);
+  border-radius: 1rem;
+}
+
+.submit:focus::after {
+  animation: anim 1s ease-in-out;
+  transform: translateX(-50%);
+}
+
+@keyframes anim {
+  0% {
+    opacity: 0;
+    width: 3px;
+  }
+  30% {
+    opacity: 1;
+  }
+  50% {
+    width: 70%;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    width: 3px;
+    opacity: 0;
+    left: 100%;
+  }
+}
+
+.submit:focus,
+.submit:hover {
+  outline-offset: 0.6rem;
+  transition: 300ms ease-in-out;
+}
