@@ -7,9 +7,12 @@ export default async function sendUrl(e) {
   const urlBar = document.querySelector(".url-bar");
   e.preventDefault();
   try {
-    const res = await axios.post(`http://localhost:3000/api/shorturl`, {
-      url: urlBar.value,
-    });
+    const res = await axios.post(
+      `https://gm-short.herokuapp.com/api/shorturl`,
+      {
+        url: urlBar.value,
+      }
+    );
     makesSureIsNotHidden("display-result");
     display.textContent = "";
     if (res.data[1] === true) {

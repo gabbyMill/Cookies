@@ -10,10 +10,12 @@ const display = document.querySelector(".display-result");
 export default async function displayStats(user, id) {
   const link = document.querySelector(".link");
   if (link) {
-    id = link.textContent.split(`http://localhost:3000/`)[1];
+    id = link.textContent.split(`https://gm-short.herokuapp.com/`)[1];
   }
   try {
-    const res = await axios.get(`http://localhost:3000/api/statistic/${id}`);
+    const res = await axios.get(
+      `https://gm-short.herokuapp.com/api/statistic/${id}`
+    );
     for (const obj of res.data) {
       if (obj.id === id) {
         console.log(obj);
@@ -34,8 +36,8 @@ export default async function displayStats(user, id) {
         );
         const short = createElement("div", `Shortened URL: `, ["stat"]);
         short.append(
-          createElement("a", `http://localhost:3000/${id}`, ["link"], {
-            href: `http://localhost:3000/${id}`,
+          createElement("a", `https://gm-short.herokuapp.com/${id}`, ["link"], {
+            href: `https://gm-short.herokuapp.com/${id}`,
             target: "_blank",
           })
         );

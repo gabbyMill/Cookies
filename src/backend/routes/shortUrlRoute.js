@@ -25,7 +25,7 @@ router.post("/shorturl", (req, res, next) => {
     url = "https://" + url;
   }
   if (doesUrlExist(url)) {
-    return res.send(`http://localhost:3000/${doesUrlExist(url)}`);
+    return res.send(`https://gm-short.herokuapp.com/${doesUrlExist(url)}`);
   }
   const dbFile = path.join(path.resolve("./"), "/db.json");
   console.log("in short url route");
@@ -37,7 +37,7 @@ router.post("/shorturl", (req, res, next) => {
     urlObj.creationDate = moment().format("DD-MM-YYYY HH:mm:ss ");
     content.push(urlObj);
     fs.writeFileSync(dbFile, JSON.stringify(content));
-    return res.json([`http://localhost:3000/${id}`, true]);
+    return res.json([`https://gm-short.herokuapp.com/${id}`, true]);
     // indicate to client-side that this is a new url
     // and did not previously exist in DB
   } catch (error) {
