@@ -1,20 +1,26 @@
 const express = require("express");
 const router = express.Router();
-const path = require("path");
-const fs = require("fs");
+// const path = require("path");
+const User = require("../../../models/User.js");
 
 const { incrementRedirect } = require("../helpers/jsonHandler.js");
 // this route will serve the clients its
 // corresponding url to the generated ids
-router.get("/:id", (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   console.log("in serve client route");
-  const dbFile = path.join(path.resolve("./"), "/db.json");
+  const { id } = req.params;
+  // const dbFile = path.join(path.resolve("./"), "/db.json");
   try {
-    const content = JSON.parse(fs.readFileSync(dbFile));
+    // Switch to MongoDB
+    // const content = JSON.parse(fs.readFileSync(dbFile));
+
+    const content = await User.find({});
+    // console.log(content);
+    // res.status(200).json(content);
     for (const objects of content) {
-      if (objects.id === req.params.id) {
+      if (objects.id === id) {
         incrementRedirect(objects);
-        return res.redirect(objects.url);
+        return res.redirect(objects.url); // redirect to json
       }
     }
     throw { error: 400, message: "ID not found" };

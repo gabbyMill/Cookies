@@ -6,10 +6,13 @@
   "dependencies": {
     "axios": "^0.24.0",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
+    "mongoose": "^6.0.12",
+    "morgan": "^1.10.0",
     "validator": "^13.7.0"
   },
   "devDependencies": {
@@ -20,6 +23,7 @@
     "babel-loader": "^8.2.3",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.5.0",
+    "eslint": "^8.2.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "prettier": "^2.4.1",
@@ -32,6 +36,7 @@
   },
   "scripts": {
     "start": "node ./src/backend/app.js ",
+    "dev": "nodemon ./src/backend/app.js ",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",

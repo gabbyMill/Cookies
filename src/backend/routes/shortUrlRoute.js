@@ -3,6 +3,7 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 const moment = require("moment");
+const User = require("../../../models/User.js");
 
 const uniqueIdGenerator = require("../helpers/uniqueId.js");
 const { makesSureDbExists } = require("../helpers/jsonHandler");
@@ -30,12 +31,14 @@ router.post("/shorturl", (req, res, next) => {
   const dbFile = path.join(path.resolve("./"), "/db.json");
   console.log("in short url route");
   try {
+    // Switch to MongoDB
     const content = JSON.parse(fs.readFileSync(dbFile));
     const id = uniqueIdGenerator();
     const urlObj = { id, redirected: 0 };
     urlObj.url = url;
     urlObj.creationDate = moment().format("DD-MM-YYYY HH:mm:ss ");
     content.push(urlObj);
+    // Switch to MongoDB
     fs.writeFileSync(dbFile, JSON.stringify(content));
     return res.json([`https://gm-short.herokuapp.com/${id}`, true]);
     // indicate to client-side that this is a new url
@@ -47,8 +50,9 @@ router.post("/shorturl", (req, res, next) => {
   }
 });
 
-router.get("/statistic/:id", (req, res, next) => {
+router.get("/statistic/:id", (req, res) => {
   const dbFile = path.join(path.resolve("./"), "/db.json");
+  // Switch to MongoDB
   const content = JSON.parse(fs.readFileSync(dbFile));
   res.json(content);
   res.end();
