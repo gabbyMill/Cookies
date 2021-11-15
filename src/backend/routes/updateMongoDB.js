@@ -7,44 +7,41 @@ const router = express.Router();
 router.use(cookieParser());
 
 const User = require("../../../models/User.js");
-const checkIfAuth = require("../middleware/checkIfAuth.js");
-router.post("/", async (req, res) => {
+const Url = require("../../../models/Url.js");
+
+router.get("/", async (req, res) => {
   const collection = await User.find({});
-  console.log("colletction", collection);
   res.json(collection);
 });
 
-router.post("/signIn", checkIfAuth, (req, res) => {
-  const { user } = req.body;
+router.post("/signIn", async (req, res) => {
+  // checkIfAuth No need for auth here right ?
+  // Only signing in here, putting in the cookie,
+  // and then later authenticating on specific stuff user wants to do
+  const { username } = req.body;
   const secTok = process.env.SEC_TOK;
-  const token = jwt.sign({ user }, secTok, { expiresIn: "365d" }); // { expiresIn: "10s" }
+  const token = jwt.sign({ username }, secTok, { expiresIn: "10s" }); // { expiresIn: "10s" }
+  // await User.updateOne({ username, token });
+  await User.create({ username, token });
+  // giving the user the token as a cookie:
+  res.cookie("token", token, { expiresIn: "5s" });
   res.json(token);
-  // send cookie to user
+  // send token to user ?
 });
 
-router.get("/set-cookies", (req, res) => {
-  // set cookie from body or something
-  res.cookie("foo", "bar", { expiresIn: "365d" }); // sets cookie
-  res.json(`Set cookies`);
-});
-router.get("/get-cookies", (req, res) => {
-  // get cookie from body or something
-  res.json(req.cookies); // req.cookies
-});
-
+// Useless for now
 router.get("/del-cookie", (req, res) => {
   // delete cookie from body or something
   res.clearCookie("foo");
   res.json("Cookie has been deleted");
 });
+router.get("/a", async (req, res) => {
+  const x = await User.find({});
+  res.json(x);
+});
+router.get("/b", async (req, res) => {
+  const y = await Url.find({});
+  res.json(y);
+});
 
 module.exports = router;
-
-// const Url = require("../../../models/Url.js");
-
-// const test = {
-//   id: "123",
-//   redirected: 1,
-//   url: "https://gabby.org",
-//   creationDate: "123 ",
-// };
