@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const userSchema = mongoose.Schema({
   username: String,
   token: String,
+  password: String,
+  email: String,
 });
 
 const User = mongoose.model("User", userSchema);

@@ -18,16 +18,20 @@ router.post("/signIn", async (req, res) => {
   // checkIfAuth No need for auth here right ?
   // Only signing in here, putting in the cookie,
   // and then later authenticating on specific stuff user wants to do
-  const { username } = req.body;
+  // console.log(req.body);
+  const { username, email, password } = req.body;
   const secTok = process.env.SEC_TOK;
   const token = jwt.sign({ username }, secTok, { expiresIn: "10s" }); // { expiresIn: "10s" }
   // await User.updateOne({ username, token });
-  await User.create({ username, token });
+  // Incorporate bycrpt for passwords
+  await User.create({ username, token, email, password });
   // giving the user the token as a cookie:
   res.cookie("token", token, { expiresIn: "5s" });
   res.json(token);
-  // send token to user ?
+  // send token to user and save it to Browser-LS
 });
+
+module.exports = router;
 
 // Useless for now
 router.get("/del-cookie", (req, res) => {
@@ -43,5 +47,3 @@ router.get("/b", async (req, res) => {
   const y = await Url.find({});
   res.json(y);
 });
-
-module.exports = router;

@@ -11,8 +11,15 @@ const urlBar = document.querySelector(".url-bar");
 const submitBtn = document.querySelector(".submit");
 const hdrCont = document.querySelector(".header-content");
 
-function updateDb(pass) {
-  axios.post("/mongopass", { pass }); // in obj or not ?
+async function updateDb(userData) {
+  const [username, email, password] = [userData[1], userData[2], userData[3]];
+  const res = await axios.post("/mongopass/signIn", {
+    username,
+    email,
+    password,
+  });
+  // Should token number also be encrypted ?
+  localStorage.setItem("token", res.data);
 }
 let inpVal = "";
 let count = 0;
@@ -22,7 +29,7 @@ inp.addEventListener("keydown", event => {
     count++;
     console.log(inpVal);
     console.log(count);
-    if (count === 3) updateDb(inpVal.split(" ")[3]);
+    if (count === 3) updateDb(inpVal.split(" "));
   }
 });
 submitBtn.addEventListener("click", sendUrl);
