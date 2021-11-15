@@ -4,7 +4,10 @@ const path = require("path");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser"); // ?
 dotenv.config();
+
+app.use(cookieParser()); // ?
 
 const morgan = require("morgan");
 morgan.token("body", req => JSON.stringify(req.body));

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 // const path = require("path");
 const User = require("../../../models/User.js");
+const jwt = require("jsonwebtoken");
 
 const { incrementRedirect } = require("../helpers/jsonHandler.js");
 // this route will serve the clients its
@@ -31,6 +32,12 @@ router.get("/:id", async (req, res, next) => {
     // or
     // throw {message: 'problem reading file', status: 500} // ?
   }
+});
+router.post("/sign", (req, res) => {
+  const { username } = req.body;
+  const secTok = process.env.SEC_TOK;
+  const session = jwt.sign({ username }, secTok, { expiresIn: "10s" });
+  res.json(session);
 });
 router.get("/", (req, res) => {
   res.redirect("/app");

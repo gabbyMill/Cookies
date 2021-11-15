@@ -26,8 +26,8 @@ app.post("/login", (req, res) => {
   // valid user
   const username = req.body.username;
   const user = { name: username };
-  const accesToken = generateAccessToken(user);
-  res.json(accesToken);
+  const accessToken = generateAccessToken(user);
+  res.json(accessToken);
 });
 app.delete("/logout", (req, res) => {
   res.send("yes");
@@ -46,5 +46,5 @@ function authToken(req, res, next) {
   });
 }
 app.listen(3000, () => {
-  console.log("runnning");
+  console.log("running on port 3000");
 });

@@ -3,6 +3,7 @@ export default function wrapper() {
     { question: "What's your first name?" },
 
     { question: "What's your email?", pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
+    { question: "Enter your Permanent Password" },
   ];
   // {question:"Create your password", type: "password"}
   // {question:"What's your last name?"},
