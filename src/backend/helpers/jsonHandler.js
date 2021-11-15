@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 // const mongoose = require("mongoose");
-const User = require("../../../models/User.js");
+const Url = require("../../../models/Url.js");
 
 // what do you say about error handling here ?
 
@@ -17,7 +17,7 @@ function makesSureDbExists() {
 function doesUrlExist(inputUrl) {
   try {
     // Switch to MongoDB
-    const content = User.find({});
+    const content = Url.find({});
     // const content = JSON.parse(fs.readFileSync(dbFile));
     for (const objects of content) {
       if (objects.url === inputUrl) {
@@ -34,7 +34,7 @@ async function incrementRedirect(obj) {
   try {
     // const content = JSON.parse(fs.readFileSync(dbFile));
     // Switch to MongoDB
-    const content = await User.find({});
+    const content = await Url.find({});
     for (const objects of content) {
       if (objects.id === obj.id) {
         objects.redirected++;

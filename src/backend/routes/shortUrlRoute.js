@@ -3,7 +3,7 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 const moment = require("moment");
-const User = require("../../../models/User.js");
+const Url = require("../../../models/Url.js");
 
 const uniqueIdGenerator = require("../helpers/uniqueId.js");
 const { makesSureDbExists } = require("../helpers/jsonHandler");

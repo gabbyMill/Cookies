@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema({
+const urlSchema = mongoose.Schema({
   id: String,
   redirected: Number,
   url: String,
   creationDate: String,
 });
 
-const User = mongoose.model("User", userSchema);
+const Url = mongoose.model("Url", urlSchema);
 
 // userSchema.set("toJSON", {
 //   transform: (document, returnedObject) => {
@@ -17,4 +17,4 @@ const User = mongoose.model("User", userSchema);
 //   },
 // });
 
-module.exports = User;
+module.exports = Url;

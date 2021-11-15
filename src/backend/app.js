@@ -6,6 +6,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser"); // ?
 const checkIfAuth = require("../backend/middleware/checkIfAuth.js");
+const updateMongoDB = require("../backend/routes/updateMongoDB.js");
 dotenv.config();
 
 app.use(cookieParser()); // ?
@@ -26,6 +27,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", checkIfAuth, shortUrlRoute);
+app.post("/mongopass", updateMongoDB);
 
 app.use("/app", express.static(path.resolve("./dist")));
 app.get("/app", function (req, res) {
