@@ -3,15 +3,6 @@ const router = express.Router();
 // const path = require("path");
 const Url = require("../../../models/Url.js");
 const checkIfAuth = require("../middleware/checkIfAuth.js");
-const jwt = require("jsonwebtoken");
-
-router.post("/signIn", checkIfAuth, (req, res) => {
-  const { user } = req.body;
-  const secTok = process.env.SEC_TOK;
-  const token = jwt.sign(user, secTok); // { expiresIn: "10s" }
-  res.json("Token: " + token);
-  // document.sessionStorage.setItem("session1", token);
-});
 
 const { incrementRedirect } = require("../helpers/jsonHandler.js");
 // this route will serve the clients its

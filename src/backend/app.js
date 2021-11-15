@@ -27,7 +27,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", checkIfAuth, shortUrlRoute);
-app.post("/mongopass", updateMongoDB);
+app.use("/mongopass", updateMongoDB);
 
 app.use("/app", express.static(path.resolve("./dist")));
 app.get("/app", function (req, res) {
