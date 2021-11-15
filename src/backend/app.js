@@ -5,6 +5,7 @@ const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser"); // ?
+const checkIfAuth = require("../backend/middleware/checkIfAuth.js");
 dotenv.config();
 
 app.use(cookieParser()); // ?
@@ -24,13 +25,13 @@ const errorHandler = require("./middleware/errorHandler.js");
 app.use(cors());
 app.use(express.json());
 
-app.use("/api", shortUrlRoute);
+app.use("/api", checkIfAuth, shortUrlRoute);
 
 app.use("/app", express.static(path.resolve("./dist")));
 app.get("/app", function (req, res) {
   res.sendFile(path.resolve("./dist/index.html"));
 });
-app.use("/", getShortenedUrl);
+app.use("/", getShortenedUrl); // applied auth middleware only for this route
 app.use(errorHandler);
 
 app.listen(port, () => {

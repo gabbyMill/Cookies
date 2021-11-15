@@ -2,31 +2,26 @@ const express = require("express");
 const router = express.Router();
 // const path = require("path");
 const User = require("../../../models/User.js");
+const checkIfAuth = require("../middleware/checkIfAuth.js");
 const jwt = require("jsonwebtoken");
 
-router.post("/sign", (req, res) => {
+router.post("/signUp", checkIfAuth, (req, res) => {
+  console.log(req.headers);
   const { user } = req.body;
   const secTok = process.env.SEC_TOK;
-  const session = jwt.sign(user, secTok); // { expiresIn: "10s" }
-  // document.sessionStorage.setItem("session1", session);
-  res.json(session);
+  const token = jwt.sign(user, secTok); // { expiresIn: "10s" }
+  res.json(token);
+  // document.sessionStorage.setItem("session1", token);
 });
-router.get("/verify/:id", (req, res, next) => {
-  console.log(1);
-  const { id } = req.params;
-  const secTok = process.env.SEC_TOK;
-  jwt.verify(id, secTok, (err, user) => {
-    if (err) return res.status(403).json("Not able to verify user");
-    req.user = user;
-    res.json(user);
-    // next();
-    // res.status(200).json(user);
-  });
-});
+// router.get("/verify", checkIfAuth, (req, res) => {
+//   console.log(req.user);
+//   res.redirect("/app");
+// });
+
 const { incrementRedirect } = require("../helpers/jsonHandler.js");
 // this route will serve the clients its
 // corresponding url to the generated ids
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", checkIfAuth, async (req, res, next) => {
   console.log("in serve client route");
   const { id } = req.params;
   // const dbFile = path.join(path.resolve("./"), "/db.json");
@@ -52,12 +47,7 @@ router.get("/:id", async (req, res, next) => {
     // throw {message: 'problem reading file', status: 500} // ?
   }
 });
-router.post("/sign", (req, res) => {
-  const { username } = req.body;
-  const secTok = process.env.SEC_TOK;
-  const session = jwt.sign({ username }, secTok, { expiresIn: "10s" });
-  res.json(session);
-});
+
 router.get("/", (req, res) => {
   res.redirect("/app");
   res.end();
