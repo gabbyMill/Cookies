@@ -18,7 +18,6 @@ export default async function displayStats(user, id) {
     );
     for (const obj of res.data) {
       if (obj.id === id) {
-        console.log(obj);
         const title = createElement("div", "Statistics about your URL ", [
           "title",
         ]);

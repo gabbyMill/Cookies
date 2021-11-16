@@ -8,6 +8,7 @@ const { incrementRedirect } = require("../helpers/jsonHandler.js");
 // this route will serve the clients its
 // corresponding url to the generated ids
 router.get("/:id", checkIfAuth, async (req, res, next) => {
+  console.log("get id");
   const { id } = req.params;
   // const dbFile = path.join(path.resolve("./"), "/db.json");
   try {

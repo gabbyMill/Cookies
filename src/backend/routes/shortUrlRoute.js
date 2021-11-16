@@ -17,6 +17,7 @@ const validator = require("validator");
 makesSureDbExists(); // self-explanatory
 
 router.post("/shorturl", (req, res, next) => {
+  console.log("Post Shorturl");
   let { url } = req.body;
   if (!validator.isURL(url)) {
     console.log("not a valid url");
@@ -51,6 +52,7 @@ router.post("/shorturl", (req, res, next) => {
 });
 
 router.get("/statistic/:id", (req, res) => {
+  console.log("statistic/:id");
   const dbFile = path.join(path.resolve("./"), "/db.json");
   // Switch to MongoDB
   const content = JSON.parse(fs.readFileSync(dbFile));

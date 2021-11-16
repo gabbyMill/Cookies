@@ -14,7 +14,9 @@ router.get("/", async (req, res) => {
   res.json(collection);
 });
 
-router.post("/signIn", async (req, res) => {
+router.post("/register", async (req, res) => {
+  // Later incorporate bycrpt.
+  // Later relate this endpoint with sign in form in front-end
   // checkIfAuth No need for auth here right ?
   // Only signing in here, putting in the cookie,
   // and then later authenticating on specific stuff user wants to do
@@ -24,8 +26,10 @@ router.post("/signIn", async (req, res) => {
   const token = jwt.sign({ username }, secTok, { expiresIn: "10s" }); // { expiresIn: "10s" }
   // await User.updateOne({ username, token });
   // Incorporate bycrpt for passwords
+  // This should be in register
   await User.create({ username, token, email, password });
   // giving the user the token as a cookie:
+  // This should stay here
   res.cookie("token", token, { expiresIn: "5s" });
   res.json(token);
   // send token to user and save it to Browser-LS

@@ -13,7 +13,7 @@ const hdrCont = document.querySelector(".header-content");
 
 async function updateDb(userData) {
   const [username, email, password] = [userData[1], userData[2], userData[3]];
-  const res = await axios.post("/mongopass/signIn", {
+  const res = await axios.post("/mongopass/register", {
     username,
     email,
     password,
