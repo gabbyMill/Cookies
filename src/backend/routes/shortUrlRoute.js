@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const fs = require("fs");
-const path = require("path");
 const moment = require("moment");
 const validator = require("validator");
 const Url = require("../../../models/Url.js");
@@ -39,7 +37,6 @@ router.post("/shorturl", async (req, res, next) => {
     urlObj.creationDate = moment().format("DD-MM-YYYY HH:mm:ss ");
     await Url.create(urlObj);
     return res.json([`https://gm-short.herokuapp.com/${id}`, true]);
-
     // indicate to client-side that this is a new url
     // and did not previously exist in DB
   } catch (error) {
@@ -49,13 +46,9 @@ router.post("/shorturl", async (req, res, next) => {
   }
 });
 
-router.get("/statistic/:id", (req, res) => {
-  console.log("statistic/:id");
-  const dbFile = path.join(path.resolve("./"), "/db.json");
-  // Switch to MongoDB
-  const content = JSON.parse(fs.readFileSync(dbFile));
+router.get("/statistic/:id", async (req, res) => {
+  const content = await Url.find({});
   res.json(content);
-  res.end();
 });
 
 module.exports = router;
