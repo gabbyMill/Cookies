@@ -10,7 +10,7 @@ const User = require("../../../models/User.js");
 const Url = require("../../../models/Url.js");
 
 router.get("/", async (req, res) => {
-  const collection = await User.find({});
+  const collection = await Url.find({});
   res.json(collection);
 });
 

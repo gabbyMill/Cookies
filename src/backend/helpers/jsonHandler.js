@@ -14,10 +14,10 @@ function makesSureDbExists() {
   }
 }
 
-function doesUrlExist(inputUrl) {
+async function doesUrlExist(inputUrl) {
   try {
     // Switch to MongoDB
-    const content = Url.find({});
+    const content = await Url.find({});
     // const content = JSON.parse(fs.readFileSync(dbFile));
     for (const objects of content) {
       if (objects.url === inputUrl) {

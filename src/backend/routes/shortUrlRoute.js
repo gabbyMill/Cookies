@@ -3,12 +3,12 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 const moment = require("moment");
+const validator = require("validator");
 const Url = require("../../../models/Url.js");
 
 const uniqueIdGenerator = require("../helpers/uniqueId.js");
 const { makesSureDbExists } = require("../helpers/jsonHandler");
 const { doesUrlExist } = require("../helpers/jsonHandler.js");
-const validator = require("validator");
 // this function will receive a request with a body
 // that includes a url that needs shortening.
 // it will write in your database the key (original url)
@@ -16,32 +16,30 @@ const validator = require("validator");
 
 makesSureDbExists(); // self-explanatory
 
-router.post("/shorturl", (req, res, next) => {
-  console.log("Post Shorturl");
+router.post("/shorturl", async (req, res, next) => {
   let { url } = req.body;
   if (!validator.isURL(url)) {
-    console.log("not a valid url");
     return next({ status: 400, message: "Not a Valid URL" });
   }
   if (!url.includes("https://")) {
     url = "https://" + url;
   }
-  if (doesUrlExist(url)) {
-    return res.send(`https://gm-short.herokuapp.com/${doesUrlExist(url)}`);
+  // not handled correctly
+  // checks if exists then finds the url array again ?
+  if (!doesUrlExist(url)) {
+    return res.send(
+      `https://gm-short.herokuapp.com/${doesUrlExist(url).toString()}`
+    );
   }
-  const dbFile = path.join(path.resolve("./"), "/db.json");
-  console.log("in short url route");
+
   try {
-    // Switch to MongoDB
-    const content = JSON.parse(fs.readFileSync(dbFile));
     const id = uniqueIdGenerator();
     const urlObj = { id, redirected: 0 };
     urlObj.url = url;
     urlObj.creationDate = moment().format("DD-MM-YYYY HH:mm:ss ");
-    content.push(urlObj);
-    // Switch to MongoDB
-    fs.writeFileSync(dbFile, JSON.stringify(content));
+    await Url.create(urlObj);
     return res.json([`https://gm-short.herokuapp.com/${id}`, true]);
+
     // indicate to client-side that this is a new url
     // and did not previously exist in DB
   } catch (error) {
