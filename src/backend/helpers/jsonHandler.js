@@ -1,55 +1,44 @@
-const fs = require("fs");
-const path = require("path");
-// const mongoose = require("mongoose");
 const Url = require("../../../models/Url.js");
-
-// what do you say about error handling here ?
-
-const dbFile = path.join(path.resolve("./"), "/db.json");
-
-function makesSureDbExists() {
-  if (!fs.existsSync(dbFile)) {
-    // Switch to MongoDB
-    fs.writeFileSync(dbFile, JSON.stringify([]));
-  }
-}
 
 async function doesUrlExist(inputUrl) {
   try {
-    // Switch to MongoDB
     const content = await Url.find({});
-    // const content = JSON.parse(fs.readFileSync(dbFile));
     for (const objects of content) {
       if (objects.url === inputUrl) {
         return objects.id;
       }
     }
     return false;
-  } catch (error) {
+  } catch (err) {
     throw { message: "Problem reading db file", status: 500 }; // ?
   }
 }
 
 async function incrementRedirect(obj) {
   try {
-    // const content = JSON.parse(fs.readFileSync(dbFile));
-    // Switch to MongoDB
-    const content = await Url.find({});
-    for (const objects of content) {
-      if (objects.id === obj.id) {
-        objects.redirected++;
-        // Switch to MongoDB
-        return fs.writeFileSync(dbFile, JSON.stringify(content));
-      }
-    }
-    return false;
-  } catch (error) {
+    // return this ?
+    await Url.findByIdAndUpdate(obj.id, {
+      redirected: obj.redirected++,
+    });
+    return; // doesn't need to return y
+  } catch (err) {
     throw { message: "Problem reading db file", status: 500 };
   }
 }
 
 module.exports = {
-  makesSureDbExists,
   doesUrlExist,
   incrementRedirect,
 };
+
+// Was In INCREMENT OBJECT FUNCTION
+
+// const content = await Url.find({});
+// for (const objects of content) {
+//   if (objects.id === obj.id) {
+//     objects.redirected++;
+//     // Switch to MongoDB
+//     return fs.writeFileSync(dbFile, JSON.stringify(content));
+//   }
+// }
+// return false; // returns false if didn't succeed in updating

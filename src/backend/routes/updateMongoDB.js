@@ -1,6 +1,8 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const joi = require("joi");
+const bycrpt = require("bcrypt");
 
 const router = express.Router();
 
@@ -14,11 +16,13 @@ router.get("/", async (req, res) => {
   res.json(collection);
 });
 
+router.post("/sign-in", async (req, res) => {
+  // next ?
+  res.json("sign-in");
+});
+
 router.post("/register", async (req, res) => {
   // Later incorporate bycrpt.
-  // Later relate this endpoint with sign in form in front-end
-  // checkIfAuth No need for auth here right ?
-  // Only signing in here, putting in the cookie,
   // and then later authenticating on specific stuff user wants to do
   // console.log(req.body);
   const { username, email, password } = req.body;

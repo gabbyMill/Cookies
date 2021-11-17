@@ -5,14 +5,15 @@ const validator = require("validator");
 const Url = require("../../../models/Url.js");
 
 const uniqueIdGenerator = require("../helpers/uniqueId.js");
-const { makesSureDbExists } = require("../helpers/jsonHandler");
 const { doesUrlExist } = require("../helpers/jsonHandler.js");
 // this function will receive a request with a body
 // that includes a url that needs shortening.
 // it will write in your database the key (original url)
 // and generate a value (new unique ID) and store them in an array/obj
 
-makesSureDbExists(); // self-explanatory
+// Should I get rid of this ?
+// const { makesSureDbExists } = require("../helpers/jsonHandler");
+// makesSureDbExists(); // self-explanatory
 
 router.post("/shorturl", async (req, res, next) => {
   let { url } = req.body;
